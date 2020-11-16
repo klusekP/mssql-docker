@@ -1,0 +1,20 @@
+version: "3.8"
+services:
+    mssql:
+      image: "mcr.microsoft.com/mssql/server"
+      ports:
+        - "1433:1433"
+      volumes:
+        - "sqlvolume:/var/opt/mssql"
+      environment:
+        SA_PASSWORD: "change_this_password"
+        ACCEPT_EULA: "Y"
+
+volumes:
+    sqlvolume:
+      name: sqlvolume
+        driver: local
+        driver_opts:
+            type: 'none'
+            o: 'bind'
+            device: $PWD/data/
