@@ -5,7 +5,7 @@ services:
       ports:
         - "1433:1433"
       volumes:
-        - "sqlvolume:/var/opt/mssql"
+        - "sqlvolume:/var/opt/mssql/backups"
       environment:
         SA_PASSWORD: "change_this_password"
         ACCEPT_EULA: "Y"
@@ -13,8 +13,8 @@ services:
 volumes:
     sqlvolume:
       name: sqlvolume
-        driver: local
-        driver_opts:
-            type: 'none'
-            o: 'bind'
-            device: $PWD/data/
+      driver: local
+      driver_opts:
+        type: 'none'
+        o: 'bind'
+        device: $PWD/data/
